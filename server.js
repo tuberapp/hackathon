@@ -9,6 +9,12 @@ var app = express(); //init
 var rider_waiting = false;
 var driver_incoming = false;
 
+app.get('/', gethome);
+function gethome(req, res) {
+    res.send('<html><body><h1>Hackster IO -- Tuber App!</h1><br/>' +
+        '');
+}
+
 app.get('/hack/requestride', function (req, res) {
     // mobile app requests a ride
 
