@@ -17,6 +17,7 @@ var rider_waiting = false;
 var driver_incoming = false;
 var rider_id = 1;
 var rider_details = [];
+var car_location = {};
 
 app.get('/', gethome);
 
@@ -50,6 +51,7 @@ function findWeatherAndReturn(rider ,response){
             weather = data['history']['dailysummary'][0]['meantempi']
             
             rider['weather'] = weather
+            car_location = rider
             response.send(rider);
         });
     });
@@ -80,7 +82,6 @@ app.post('/hack/requestride', function (req, res) {
         'city': req.body.city
 
     }
-
     rider_details.push( rider )
     res.send('welcome, ' + req.body.name)
 });
@@ -90,24 +91,23 @@ app.get('/hack/rideavailable', function (req, res) {
     driver_incoming = true;
 
     //find the weather.
-
-    rider =  rider_details.pop()
-
-    weather = findWeatherAndReturn(rider, res)
-    
+    if( rider.length > 0){
+        res.send('True')
+    }
+    else{
+        res.send('False')
+    }
 
 });
 
 app.get('/hack/rideaccepted', function (req, res) {
     // driver pushed button on edison
-    res.send('{}');
+    rider =  rider_details.pop()
+    weather = findWeatherAndReturn(rider, res)
 });
 app.get('/hack/rideprogress', function (req, res) {
     // mobile app wants to know where driver is
-    res.send('{result:' + driver_incoming + ', ' +
-        'carlocation:"999 3rd ave"' +
-        'cardate:"2015"' +
-        '}');
+    res.send(car_location);
 });
 
 // Start server!
