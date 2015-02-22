@@ -15,7 +15,7 @@ var rider_details = [];
 var car_location = {};
 
 app.get('/', gethome);
-app.user(cors())
+app.use(cors())
 
 
 function findWeatherAndReturn(rider, response) {
