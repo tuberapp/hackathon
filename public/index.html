@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Time Travel</title>
@@ -92,7 +92,7 @@ var p;
 		
 				$.ajax({
 		type:"POST",
-		url:"http://tuberapp.azurewebsites.net/hack/requestride",
+		url:"/hack/requestride",
 		data: {name:p,date:date,address:address,city:city,state:state},
 		success: standby()
 		});
@@ -150,7 +150,7 @@ var p;
 
 <div class="toggle">
 	<div class="frontlogodiv">
-	<img src="http://tuberapp.azurewebsites.net/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
+	<img src="/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
 	</div>
   <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
   <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
