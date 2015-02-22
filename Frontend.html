@@ -19,8 +19,14 @@
 		right:35%;
 		}
       .map {
-	    /*visibility: hidden;*/
-        max-width: 100%;
+	    /* visibility: hidden; */
+		height: 100%;
+        max-width: 100%; 
+		}
+	.tabSUM
+		{
+		visibility:hidden;
+		
 		}
     </style>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -34,8 +40,23 @@
 var p;
 		function standby(){
 		
-		$('#map').show();
 		
+		$('#map').show();
+		      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.MapQuest({layer: 'sat'})
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
+          zoom: 4
+        })
+      });
+		
+		
+		map.updateSize();
 		
 		}
 
@@ -82,27 +103,33 @@ var p;
 		</script>
 </head>
 <body>
-<div id="map" class="map"></div>
   <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
   <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Register</button>
   
+  
+  
+  
+ <!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tabs" id="tabSUM">
+  <li role="presentation" class="active"><a href="#map">Map - Space Dimension</a></li>
+  <li role="presentation"><a href="#">Map - Time Dimension</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+  
+  
+
+
+
+  
+  <!-- Tab panes -->
+  
   <div class="tab-content">
-  <div  role="tabpanel" id="map" class="map"></div>
+      <div  role="tabpanel" id="map" class="map">
   </div>
- 		<script type="text/javascript">
-      var map = new ol.Map({
-        target: 'map',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.MapQuest({layer: 'sat'})
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
-          zoom: 4
-        })
-      });
-  </script>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
 <div class="container">
 <!-- Small modal -->
 
@@ -134,11 +161,11 @@ var p;
     
 	  <div class="input-group">
     <label for="user">Identification</label>
-    <input type="text" class="form-control" id="user" placeholder="Enter login">
+    <input type="text" class="form-control" id="user" placeholder="username">
   </div>
   <div class="input-group">
     <label for="Password1">Password</label>
-    <input type="password" class="form-control" id="Password1" placeholder="Password">
+    <input type="password" class="form-control" id="Password1" placeholder="password">
   </div>
   <span class="input-group-btn">
   <button onclick="submit_1()" class="btn btn-default">Submit</button>
