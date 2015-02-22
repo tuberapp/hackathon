@@ -137,6 +137,7 @@ app.post('/hack/setdriverlocation', function (req, res) {
     var body = '';
     req.on('data', function (data) {
         body += data;
+        console.log("got data! " + data);
 
         // Too much POST data, kill the connection!
         if (body.length > 1e6)
@@ -144,7 +145,8 @@ app.post('/hack/setdriverlocation', function (req, res) {
     });
     req.on('end', function () {
         req.body = qs.parse(body);
-        console.log(req.body)
+        console.log("end");
+        console.log(req.body);
 
         // TODO: make this pose, accept name and date and address
         if (!req.body) { return res.sendStatus(400); }
@@ -191,7 +193,14 @@ app.get('/hack/admin', function (req, res) {
         "car_location:" + JSON.stringify(car_location) +
         "<br/>" +
         "<br/>" +
+        "<button onclick='setdriverlocation()'>setdriverlocation</button>" +
         "<br/>" +
+        "<button onclick='requestride()'>requestride</button>" +
+        "<br/>" +
+        "<br/>" +
+        '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>'+
+        '<script>    function requestride() {	        $.ajax({            type:"POST",            url:"/hack/requestride",            data: {name:"max",date:"date",address:"address",city:"city",state:"state"}        });}</script>' +
+        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",            url:"/hack/setdriverlocation",            data: {lat:"lat", long:"long",date:"date"}    });}</script>' +
         "...fuck yea." +
         "");
 });
