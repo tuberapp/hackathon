@@ -2,13 +2,7 @@ var http = require('http')
 var port = process.env.PORT || 1337;
 var express = require('express');
 var app = express(); //init
-var bodyParser = require('body-parser');
-
-
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+var qs = require('querystring');
 
 ///////////////////////////////////////////
 // Hackster IO Hackathon! 
@@ -22,9 +16,9 @@ var car_location = {};
 app.get('/', gethome);
 
 
-function findWeatherAndReturn(rider ,response){
+function findWeatherAndReturn(rider, response) {
     path = "http://api.wunderground.com/api/73de21f5b11ba67d/history_";
-    path += (rider.date +  "/q/" + rider.state + "/" + rider.city + ".json")
+    path += (rider.date + "/q/" + rider.state + "/" + rider.city + ".json")
 
     console.log(path)
 
@@ -49,7 +43,7 @@ function findWeatherAndReturn(rider ,response){
             console.log(data);
             data = JSON.parse(data)
             weather = data['history']['dailysummary'][0]['meantempi']
-            
+
             rider['weather'] = weather
             car_location = rider
             response.send(rider);
@@ -66,24 +60,36 @@ function gethome(req, res) {
 
 app.post('/hack/requestride', function (req, res) {
     // mobile app requests a ride
+    var body = '';
+    req.on('data', function (data) {
+        body += data;
 
-    // TODO: make this pose, accept name and date and address
-    if (!req.body) return res.sendStatus(400)
-    rider_waiting = true;
+        // Too much POST data, kill the connection!
+        if (body.length > 1e6)
+            req.connection.destroy();
+    });
+    req.on('end', function () {
+        req.body = qs.parse(body);
 
-    var id = rider_id;
-    rider_id++;
+        // TODO: make this pose, accept name and date and address
+        if (!req.body) return res.sendStatus(400)
+        rider_waiting = true;
 
-    rider = {
-        'name' : req.body.name,
-        'date' : req.body.date,
-        'address' : req.body.address,
-        'state' : req.body.state,
-        'city': req.body.city
+        var id = rider_id;
+        rider_id++;
 
-    }
-    rider_details.push( rider )
-    res.send('welcome, ' + req.body.name)
+        rider = {
+            'name': req.body.name,
+            'date': req.body.date,
+            'address': req.body.address,
+            'state': req.body.state,
+            'city': req.body.city
+
+        }
+        rider_details.push(rider)
+        res.send('welcome, ' + req.body.name)
+
+    });
 });
 
 app.get('/hack/rideavailable', function (req, res) {
@@ -91,10 +97,10 @@ app.get('/hack/rideavailable', function (req, res) {
     driver_incoming = true;
 
     //find the weather.
-    if( rider.length > 0){
+    if (rider.length > 0) {
         res.send('True')
     }
-    else{
+    else {
         res.send('False')
     }
 
@@ -102,7 +108,7 @@ app.get('/hack/rideavailable', function (req, res) {
 
 app.get('/hack/rideaccepted', function (req, res) {
     // driver pushed button on edison
-    rider =  rider_details.pop()
+    rider = rider_details.pop()
     weather = findWeatherAndReturn(rider, res)
 });
 app.get('/hack/rideprogress', function (req, res) {
