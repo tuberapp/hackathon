@@ -172,9 +172,6 @@ app.get('/hack/admin', function (req, res) {
     res.send("" +
         "<h1>admin console</h1>" +
         "<br/>" +
-        "car_location:" + JSON.stringify(car_location) +
-        "<br/>" +
-        
         "rider_waiting = " +
         JSON.stringify(rider_waiting) +
         "<br/>" +
@@ -189,8 +186,6 @@ app.get('/hack/admin', function (req, res) {
         "<br/>" +
         "car_location "+
         JSON.stringify(car_location) +
-        "<br/>" +
-        "car_location:" + JSON.stringify(car_location) +
         "<br/>" +
         "<br/>" +
         "<button onclick='setdriverlocation()'>setdriverlocation</button>" +
