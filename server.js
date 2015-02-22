@@ -77,6 +77,7 @@ app.post('/hack/requestride', function (req, res) {
     });
     req.on('end', function () {
         req.body = qs.parse(body);
+        console.log(req.body)
 
         // TODO: make this pose, accept name and date and address
         if (!req.body) return res.sendStatus(400)
