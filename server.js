@@ -98,18 +98,19 @@ app.get('/hack/rideavailable', function (req, res) {
 
     //find the weather.
     if( rider_details.length > 0){
-        res.send('True')
+        rider = rider_details.pop()
+        rider.result = true
+        findWeatherAndReturn(rider, res)
+
     }
     else {
-        res.send('False')
+        res.send(JSON.stringify({'result':false}))
     }
 
 });
 
 app.get('/hack/rideaccepted', function (req, res) {
     // driver pushed button on edison
-    rider = rider_details.pop()
-    weather = findWeatherAndReturn(rider, res)
 });
 app.get('/hack/rideprogress', function (req, res) {
     // mobile app wants to know where driver is
