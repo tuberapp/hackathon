@@ -4,6 +4,7 @@ var express = require('express');
 var app = express(); //init
 var qs = require('querystring');
 var cors = require('cors');
+var fs = require('fs');
 
 ///////////////////////////////////////////
 // Hackster IO Hackathon! 
@@ -14,6 +15,7 @@ var rider_id = 1;
 var rider_details = [];
 var car_location = {};
 
+app.use(express.static(__dirname + '/public'));
 app.get('/', gethome);
 app.use(cors())
 
@@ -54,10 +56,13 @@ function findWeatherAndReturn(rider, response) {
 }
 
 function gethome(req, res) {
+    res.render('index.html')
+    /*
     res.send('<html><body>' +
 		'<h1>Hackster IO -- Tuber App!</h1>' +
 		'<br/>' +
         '</body></html>');
+    */
 }
 
 app.post('/hack/requestride', function (req, res) {
@@ -82,7 +87,7 @@ app.post('/hack/requestride', function (req, res) {
 
         rider = {
             'name': req.body.name,
-            'date': req.body.date,
+            'date': (req.body.date).replace('/',''),
             'address': req.body.address,
             'state': req.body.state,
             'city': req.body.city
