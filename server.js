@@ -56,8 +56,10 @@ function findWeatherAndReturn(rider ,response){
 }
 
 function gethome(req, res) {
-    res.send('<html><body><h1>Hackster IO -- Tuber App!</h1><br/>' +
-        '');
+    res.send('<html><body>' +
+		'<h1>Hackster IO -- Tuber App!</h1>' +
+		'<br/>' +
+        '</body></html>');
 }
 
 app.post('/hack/requestride', function (req, res) {
@@ -108,9 +110,7 @@ app.get('/hack/rideprogress', function (req, res) {
         '}');
 });
 
-var server = app.listen(3000, function() {
-    var host = server.address().address
-    var port = server.address().port
-
-    console.log('Example app listening at http://%s:%s', host, port)
+// Start server!
+var server = app.listen(port, function serverstartup() {
+    console.log('NodeExpress server listening on port %d', server.address().port);
 });

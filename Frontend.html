@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Time Travel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
+		<script>
+		function submit_1(){
+		if ( !($('#exampleinputEmail').val() || $('#Password1').val())
+		{
+		
+		
+		var p = $('#exampleinputEmail').val();
+		var e = $('#Password1').val();
+		
+		
+		
+		
+		$('#loginform').modal('hide');
+		
+		//$.ajax(someurl,settings
+		
+		alert(e);
+		};
+		</script>
+</head>
+<body>
+  
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
+  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Register</button>
+  
+  
+<div class="container">
+<!-- Small modal -->
+
+
+<div class="modal fade bs-example-modal-sm" id="loginform" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <font color="white">Authorize</font> 
+    <div class="modal-content">
+	<div class="modal-body">
+    
+	  <div class="input-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleinputEmail1" placeholder="Enter login">
+  </div>
+  <div class="input-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="Password1" placeholder="Password">
+  </div>
+  <span class="input-group-btn">
+  <button onclick="submit_1()" class="btn btn-default">Submit</button>
+  </span>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  </div>
+    </div>
+  </div>
+</div>      
+</div>
+
+</body>
+</html>
