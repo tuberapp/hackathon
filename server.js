@@ -150,9 +150,9 @@ app.post('/hack/setdriverlocation', function (req, res) {
         if (!req.body) { return res.sendStatus(400); }
 
         car_location = {
-            'date': (req.body.date || "").replace('/', ''),
-            'lat': req.body.address || "",
-            'long': req.body.state || "",
+            'date': (req.body.date || ""),
+            'lat': req.body.lat || "",
+            'long': req.body.long || "",
         }
         res.send("{}");
     });
@@ -165,6 +165,36 @@ app.get('/hack/getdriverlocation', function (req, res) {
 
 
 
+app.get('/hack/admin', function (req, res) {
+    // mobile app wants to know where driver is
+    res.send("" +
+        "<h1>admin console</h1>" +
+        "<br/>" +
+        "car_location:" + JSON.stringify(car_location) +
+        "<br/>" +
+        
+        "rider_waiting = " +
+        JSON.stringify(rider_waiting) +
+        "<br/>" +
+        "driver_incoming = " +
+        JSON.stringify(driver_incoming) +
+        "<br/>" +
+        "rider_id " +
+        JSON.stringify(rider_id) +
+        "<br/>" +
+        "rider_details "+
+        JSON.stringify(rider_details) +
+        "<br/>" +
+        "car_location "+
+        JSON.stringify(car_location) +
+        "<br/>" +
+        "car_location:" + JSON.stringify(car_location) +
+        "<br/>" +
+        "<br/>" +
+        "<br/>" +
+        "...fuck yea." +
+        "");
+});
 
 
 
