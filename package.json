@@ -1,0 +1,10 @@
+{
+  "name": "tuberappwebconfig",
+  "version": "0.0.0",
+  "description": "tuberappwebconfig",
+  "main": "server.js",
+  "author": {
+    "name": "Max",
+    "email": ""
+  }
+}
