@@ -46,7 +46,12 @@ function findWeatherAndReturn(rider, response) {
             // you can use res.send instead of console.log to output via express
             console.log(data);
             data = JSON.parse(data)
+            try{
             weather = data['history']['dailysummary'][0]['meantempi']
+            }
+            catch(ex){
+                weather = 50
+            }
 
             rider['weather'] = weather
             car_location = rider
