@@ -144,7 +144,7 @@ app.post('/hack/setdriverlocation', function (req, res) {
             req.connection.destroy();
     });
     req.on('end', function () {
-        debugcar = reqJSON.stringify(body);
+        debugcar = body;
         req.body = qs.parse(body);
         console.log("end");
         console.log(req.body);
