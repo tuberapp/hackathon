@@ -19,8 +19,8 @@
 		right:35%;
 		}
       .map {
-	    /*visibility: hidden;*/
-        max-width: 100%;
+	    display:none;
+        max-width: none;
 		}
     </style>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -34,7 +34,7 @@
 var p;
 		function standby(){
 		
-		$('#map').show();
+		$('#map').css("display","block");
 		
 		
 		}
@@ -44,7 +44,7 @@ var p;
 		
 		var date = $('#date').val()
 		var address = $('#address').val()
-		var city = $('#city').val()
+		var city = $('city').val()
 		var state = $('#state').val()
 		$('#formfields').modal('hide')
 		
@@ -53,7 +53,7 @@ var p;
 				$.ajax({
 		type:"POST",
 		url:"http://tuberapp.azurewebsites.net/hack/requestride",
-		data: {name:p,date:date,address:address,city:city,state:state},
+		data: {name:"lolbutts",date:date,address:address,city:city,state:state},
 		success: standby()
 		});
 		
@@ -64,7 +64,7 @@ var p;
 
 		function submit_1(){
 		
-		p = $('#user').val();
+		$('#exampleinputEmail1').val() = p;
 		var e = $('#Password1').val();
 		if (p != e){ 
 		$('#loginform').modal('hide')
@@ -106,13 +106,13 @@ var p;
 <div class="container">
 <!-- Small modal -->
 
-<div class="modal fade" id="formfields" tabindex="0" role="input">
+<div class="modal fade testicle" id="formfields" tabindex="0" role="input">
 
 <div class="input-group">
   <input type="text" class="form-control" id="address" placeholder="Address" aria-describedby="basic-addon2">
 </div>
 	  <div class="input-group">
-    <input type="text" class="form-control" id="date" placeholder="MM/DD/YYYY">
+    <input type="text" class="form-control" id="date" placeholder="WHEN">
   </div>
 
   	  <div class="input-group">
@@ -133,11 +133,11 @@ var p;
 	<div class="modal-body">
     
 	  <div class="input-group">
-    <label for="user">Identification</label>
-    <input type="text" class="form-control" id="user" placeholder="Enter login">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleinputEmail1" placeholder="Enter login">
   </div>
   <div class="input-group">
-    <label for="Password1">Password</label>
+    <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="Password1" placeholder="Password">
   </div>
   <span class="input-group-btn">
