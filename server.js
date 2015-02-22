@@ -129,6 +129,51 @@ app.get('/hack/rideprogress', function (req, res) {
     res.send(car_location);
 });
 
+
+
+app.post('/hack/setdriverlocation', function (req, res) {
+    // driver sending us updates on the year
+    
+    var body = '';
+    req.on('data', function (data) {
+        body += data;
+
+        // Too much POST data, kill the connection!
+        if (body.length > 1e6)
+            req.connection.destroy();
+    });
+    req.on('end', function () {
+        req.body = qs.parse(body);
+        console.log(req.body)
+
+        // TODO: make this pose, accept name and date and address
+        if (!req.body) { return res.sendStatus(400); }
+
+        car_location = {
+            'date': (req.body.date || "").replace('/', ''),
+            'lat': req.body.address || "",
+            'long': req.body.state || "",
+        }
+        res.send("{}");
+    });
+
+});
+app.get('/hack/getdriverlocation', function (req, res) {
+    // mobile app wants to know where driver is
+    res.send(car_location);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // Start server!
 var server = app.listen(port, function serverstartup() {
     console.log('NodeExpress server listening on port %d', server.address().port);
