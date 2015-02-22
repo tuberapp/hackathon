@@ -3,6 +3,7 @@ var port = process.env.PORT || 1337;
 var express = require('express');
 var app = express(); //init
 var qs = require('querystring');
+var cors = require('cors');
 
 ///////////////////////////////////////////
 // Hackster IO Hackathon! 
@@ -14,6 +15,7 @@ var rider_details = [];
 var car_location = {};
 
 app.get('/', gethome);
+app.user(cors())
 
 
 function findWeatherAndReturn(rider, response) {
