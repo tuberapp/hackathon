@@ -1,0 +1,44 @@
+edison:
+
+corner port is erial, other is power
+
+putty to 115200
+user: root
+no password
+
+configure_edison --wifi
+
+ifconfig to see ip address --> into winSCP (scp mode)
+winscp:
+hostname: 192.168.129.151
+user: root (no password)
+
+folder:
+/tuber
+
+./configure --> calls get_pip.py
+
+
+RUN THE THING:
+killall python
+python delorian.py
+ctrl-Z
+
+
+
+
+
+(optional, delorian is the service name)
+systemctl stop delorian
+systemctl restart delorian
+
+
+
+
+
+ON A NEW EDISON?
+=======================
+copy delorian.service
+to: /lib/systemd/system/
+
+
