@@ -19,15 +19,14 @@
 		right:35%;
 		}
       .map {
-	    /* visibility: hidden; */
 		height: 100%;
         max-width: 100%; 
 		}
-	/*#tabSUM
+	#tabSUM
 		{
-		visibility:hidden;
+		display:none;
 		
-		}*/
+		}
     </style>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>
@@ -61,7 +60,7 @@ var p;
 		}
 
 		
-		function submit_2(){
+		function server_send(){
 		
 		var date = $('#date').val()
 		var address = $('#address').val()
@@ -105,18 +104,19 @@ var p;
 </head>
 <body>
   <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
-  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Register</button>
+  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
   
   
   
   
  <!-- Nav tabs -->
+<div id="topbar"> 
 <ul class="nav nav-tabs" role="tabs" id="tabSUM">
   <li role="presentation" class="active"><a href="#map">Map - Space Dimension</a></li>
   <li role="presentation"><a href="#">Map - Time Dimension</a></li>
   <li role="presentation"><a href="#">Messages</a></li>
 </ul>
-  
+ </div>
   
 
 
@@ -150,7 +150,7 @@ var p;
     <input type="text" class="form-control" id="state" placeholder="State">
   </div>
 
-    <button onclick="submit_2()" class="btn btn-default">Submit</button>
+    <button onclick="server_send()" class="btn btn-default">Submit</button>
 
 </div>
 
@@ -185,15 +185,18 @@ var p;
     <div class="modal-content">
 	<div class="modal-body">
     
+	  
+  <div class="input-group">
+    <label for="">Name</label>
+    <input type="text" class="form-control" id="propname" placeholder="name">
+  </div>
+	
+	
 	  <div class="input-group">
     <label for="email1">Email</label>
-    <input type="Email" class="form-control" id="user" placeholder="username">
+    <input type="Email" class="form-control" id="emailreg" placeholder="name@domain.com">
   </div>
-  
-  <div class="input-group">
-    <label for="email1">Email</label>
-    <input type="" class="form-control" id="user" placeholder="username">
-  </div>
+
   
   <div class="input-group">
     <label for="Password2">Password</label>
