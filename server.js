@@ -148,7 +148,7 @@ app.post('/hack/setdriverlocation', function (req, res) {
         try {
             req.body = JSON.parse(body);
         } catch (ex) {
-            return req.end("{error:'cant parse json'}")
+            return res.send("{error:'cant parse json'}")
         }
 
         // TODO: make this pose, accept name and date and address
