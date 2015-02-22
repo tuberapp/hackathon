@@ -71,9 +71,9 @@ var p;
           zoom: 4
         })
       });
-		
-		
 		map.updateSize();
+		
+		$('toggle').hide()
 		
 		}
 
@@ -119,18 +119,8 @@ var p;
 		
 		}
 		</script>
-</head>
-<body>
-<div class="frontlogodiv">
-<img src="http://tuberapp.azurewebsites.net/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
-</div>
-  <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
-  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
-  
-  
-  
-  
- <!-- Nav tabs -->
+		
+		 <!-- Nav tabs -->
 <div id="topbar"> 
 <ul class="nav nav-tabs" role="tabs" id="tabSUM">
   <li role="presentation" class="active"><a href="#map">Map - Space Dimension</a></li>
@@ -152,6 +142,21 @@ var p;
     <div role="tabpanel" class="tab-pane" id="messages">...</div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>
+		
+</head>
+<body>
+
+<div class="toggle">
+	<div class="frontlogodiv">
+	<img src="http://tuberapp.azurewebsites.net/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
+	</div>
+  <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
+  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
+</div>
+  
+  
+  
+
 <div class="container">
 <!-- Small modal -->
 
