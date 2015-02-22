@@ -14,7 +14,7 @@ var driver_incoming = false;
 var rider_id = 1;
 var rider_details = [];
 var car_location = {};
-
+var debugcar = "";
 app.use(express.static(__dirname + '/public'));
 app.get('/', gethome);
 app.use(cors())
@@ -144,12 +144,16 @@ app.post('/hack/setdriverlocation', function (req, res) {
             req.connection.destroy();
     });
     req.on('end', function () {
+        debugcar = reqJSON.stringify(body);
         req.body = qs.parse(body);
         console.log("end");
         console.log(req.body);
 
+
         // TODO: make this pose, accept name and date and address
         if (!req.body) { return res.sendStatus(400); }
+
+
 
         car_location = {
             'date': (req.body.date || ""),
@@ -184,9 +188,12 @@ app.get('/hack/admin', function (req, res) {
         "rider_details "+
         JSON.stringify(rider_details) +
         "<br/>" +
-        "car_location "+
+        "car_location " +
         JSON.stringify(car_location) +
+
         "<br/>" +
+        "debugcar " +
+        JSON.stringify(debugcar) +
         "<br/>" +
         "<button onclick='setdriverlocation()'>setdriverlocation</button>" +
         "<br/>" +
