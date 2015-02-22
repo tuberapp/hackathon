@@ -11,8 +11,10 @@ var driver_incoming = false;
 
 app.get('/', gethome);
 function gethome(req, res) {
-    res.send('<html><body><h1>Hackster IO -- Tuber App!</h1><br/>' +
-        '');
+    res.send('<html><body>' +
+		'<h1>Hackster IO -- Tuber App!</h1>' +
+		'<br/>' +
+        '</body></html>');
 }
 
 app.get('/hack/requestride', function (req, res) {
@@ -45,3 +47,8 @@ app.get('/hack/rideprogress', function (req, res) {
         '}');
 });
 
+///////////////////////
+// Start server!
+var server = app.listen(port, function serverstartup() {
+    console.log('NodeExpress server listening on port %d', server.address().port);
+});
