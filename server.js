@@ -92,12 +92,11 @@ app.post('/hack/requestride', function (req, res) {
         rider_id++;
 
         rider = {
-            'name': req.body.name,
-            'date': (req.body.date).replace('/',''),
-            'address': req.body.address,
-            'state': req.body.state,
-            'city': req.body.city
-
+            'name': req.body.name || "",
+            'date': (req.body.date || "").replace('/', ''),
+            'address': req.body.address || "",
+            'state': req.body.state || "",
+            'city': req.body.city || ""
         }
         rider_details.push(rider)
         res.send('welcome, ' + req.body.name)
