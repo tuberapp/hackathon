@@ -91,7 +91,7 @@ app.get('/hack/rideavailable', function (req, res) {
     driver_incoming = true;
 
     //find the weather.
-    if( rider.length > 0){
+    if( rider_details.length > 0){
         res.send('True')
     }
     else{
