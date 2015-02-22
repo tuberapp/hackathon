@@ -14,7 +14,7 @@ var driver_incoming = false;
 var rider_id = 1;
 var rider_details = [];
 var car_location = {};
-
+var debugcar = "";
 app.use(express.static(__dirname + '/public'));
 app.get('/', gethome);
 app.use(cors())
@@ -137,17 +137,24 @@ app.post('/hack/setdriverlocation', function (req, res) {
     var body = '';
     req.on('data', function (data) {
         body += data;
+        console.log("got data! " + data);
 
         // Too much POST data, kill the connection!
         if (body.length > 1e6)
             req.connection.destroy();
     });
     req.on('end', function () {
-        req.body = qs.parse(body);
-        console.log(req.body)
+        debugcar = body;
+        try {
+            req.body = JSON.parse(body);
+        } catch (ex) {
+            return res.send("{error:'cant parse json'}")
+        }
 
         // TODO: make this pose, accept name and date and address
         if (!req.body) { return res.sendStatus(400); }
+
+
 
         car_location = {
             'date': (req.body.date || ""),
@@ -170,9 +177,6 @@ app.get('/hack/admin', function (req, res) {
     res.send("" +
         "<h1>admin console</h1>" +
         "<br/>" +
-        "car_location:" + JSON.stringify(car_location) +
-        "<br/>" +
-        
         "rider_waiting = " +
         JSON.stringify(rider_waiting) +
         "<br/>" +
@@ -185,13 +189,21 @@ app.get('/hack/admin', function (req, res) {
         "rider_details "+
         JSON.stringify(rider_details) +
         "<br/>" +
-        "car_location "+
+        "car_location " +
         JSON.stringify(car_location) +
+
         "<br/>" +
-        "car_location:" + JSON.stringify(car_location) +
+        "debugcar " +
+        JSON.stringify(debugcar) +
+        "<br/>" +
+        "<button onclick='setdriverlocation()'>setdriverlocation</button>" +
+        "<br/>" +
+        "<button onclick='requestride()'>requestride</button>" +
         "<br/>" +
         "<br/>" +
-        "<br/>" +
+        '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>'+
+        '<script>    function requestride() {	        $.ajax({            type:"POST",            url:"/hack/requestride",            data: {name:"max",date:"date",address:"address",city:"city",state:"state"}        });}</script>' +
+        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",            url:"/hack/setdriverlocation",            data: {lat:"lat", long:"long",date:"date"}    });}</script>' +
         "...fuck yea." +
         "");
 });
