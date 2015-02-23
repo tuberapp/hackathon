@@ -57,10 +57,14 @@
 		$('#map').hide();
 
         var p;
-		function standby(){
+		function standby(res ){
+        var lat = res.lat
+        var lon = res.lon
+
 		
 		$('#map').height('500px');
-		var map = L.map('map').setView([51.505, -0.09], 13);
+		var map = L.map('map');
+
         L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -68,10 +72,28 @@
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
             id: 'examples.map-i875mjb7'
         }).addTo(map);
+
+        var marker = L.marker([lat,lon ]).addTo(map);
+        rider_popup = L.popup();
+        marker.bindPopup(rider_popup);
+        marker.openPopup();
+        rider_popup.setContent("This is me");
+
+
+        /*
+        var driver_marker = L.driver_marker([lat,lon ]).addTo(map);
+        driver_popup = L.popup();
+        driver_marker.bindPopup(driver_popup);
+        driver_marker.openPopup();
+        driver_popup.setContent("Year: <strong> " + year + "</strong>" );
+        */
+
 		$('#map').show();
 		$('#login').hide()
 		$('#register').hide()
         $('.frontlogodiv').hide()
+
+        map.setView([47.6154164, -122.3460138], 13);
 		
 		}
 
@@ -91,7 +113,7 @@
 		type:"POST",
 		url:"/hack/requestride",
 		data: {name:p,date:date,address:address,city:city,state:state},
-		success: standby()
+		success: function(res) { standby(res) }
 		});
 		
 		
