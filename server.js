@@ -70,6 +70,42 @@ function gethome(req, res) {
     */
 }
 
+function findGeoAndReturn(rider, res){
+    path = "http://nominatim.openstreetmap.org/search?q="
+    path += ( rider.address + "," + rider.state + "," + rider.city + "&format=json&polygon=1&addressdetails=1")
+
+    console.log(path)
+
+    http.get(path, function (http_res) {
+        var data = "";
+        var lat = "";
+        var lon = "";
+
+        // this event fires many times, each time collecting another piece of the response
+        http_res.on("data", function (chunk) {
+            // append this chunk to our growing `data` var
+            data += chunk;
+        });
+
+        // this event fires *one* time, after all the `data` events/chunks have been gathered
+        http_res.on("end", function () {
+            // you can use res.send instead of console.log to output via express
+            console.log(data);
+            data = JSON.parse(data)
+            try{
+            lat = data[0].lat || '' 
+            lon = data[0].lon || ''
+            }
+            catch(ex){
+                lat = 47
+                lon = -122
+            }
+            to_send_data =  {'lat': lat, 'lon': lon}
+            res.send(to_send_data);
+        });
+    });
+}
+
 app.post('/hack/requestride', function (req, res) {
     // mobile app requests a ride
     var body = '';
@@ -99,7 +135,8 @@ app.post('/hack/requestride', function (req, res) {
             'city': req.body.city || ""
         }
         rider_details.push(rider)
-        res.send('welcome, ' + req.body.name)
+        findGeoAndReturn(rider, res)
+//        res.send('welcome, ' + req.body.name)
 
     });
 });
