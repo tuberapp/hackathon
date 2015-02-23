@@ -13,7 +13,7 @@ var rider_waiting = false;
 var driver_incoming = false;
 var rider_id = 1;
 var rider_details = [];
-var car_location = {};
+var car_location = { lat: "47.6154164", long: "-122.3460138", date: "2015" };
 var debugcar = "";
 app.use(express.static(__dirname + '/public'));
 app.get('/', gethome);
@@ -240,7 +240,7 @@ app.get('/hack/admin', function (req, res) {
         "<br/>" +
         '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>'+
         '<script>    function requestride() {	        $.ajax({            type:"POST",            url:"/hack/requestride",            data: {name:"max",date:"date",address:"address",city:"city",state:"state"}        });}</script>' +
-        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",     headers: {"Content-Type":"application/json"},         url:"/hack/setdriverlocation",            data: {lat:"lat", long:"long",date:"date"}    });}</script>' +
+        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",     headers: {"Content-Type":"application/json"},         url:"/hack/setdriverlocation",            data: JSON.stringify({lat:"lat", long:"long",date:"date"})    });}</script>' +
         "...fuck yea." +
         "");
 

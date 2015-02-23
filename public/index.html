@@ -80,27 +80,43 @@
             id: 'examples.map-i875mjb7'
         }).addTo(map);
 
-        var marker = L.marker([lat,lon ]).addTo(map);
+            
+        var marker = L.marker([lat,lon]).addTo(map)
         rider_popup = L.popup();
         marker.bindPopup(rider_popup);
         marker.openPopup();
         rider_popup.setContent("This is me");
+        //rider_popup.openPopup();
+        
 
 
-        /*
-        var driver_marker = L.driver_marker([lat,lon ]).addTo(map);
+        
+        var driver_marker = L.marker([lat,lon ]).addTo(map);
         driver_popup = L.popup();
         driver_marker.bindPopup(driver_popup);
-        driver_marker.openPopup();
         driver_popup.setContent("Year: <strong> " + year + "</strong>" );
-        */
+        driver_marker.openPopup();
+        //driver_popup.openPopup();
+        
 
 		$('#map').show();
 		$('#login').hide()
 		$('#register').hide()
-        $('.frontlogodiv').hide()
-
+		$('.frontlogodiv').hide()
         map.setView([47.6154164, -122.3460138], 13);
+
+		setInterval(function () {
+		    
+		    $.ajax({
+		        type:"GET",
+		        url:"/hack/getdriverlocation",
+		        success: function (data) {
+		            
+		            driver_marker.setLatLng([lat,lon ]);// not using from server!
+		            driver_popup.setContent("Year: <strong> " + (data.date || "????") + "</strong>");
+		        }
+		       });
+		    } , 400/*milliseconds*/)
 		
 		}
 
