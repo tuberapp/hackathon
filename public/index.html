@@ -73,7 +73,7 @@
         }).addTo(map);
 
 
-         L.marker([lat,lon]).addTo(map)
+         var marker = L.marker([lat,lon]).addTo(map)
             .bindPopup("<b>This is me!</b><br />").openPopup();
 
         /*
