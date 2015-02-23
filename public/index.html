@@ -32,6 +32,13 @@
 	padding-bottom;"75%"
 	}
 	
+	#formfields {
+	
+	display:none;
+	
+	
+	}
+	
 	#login {
 		position: absolute;
 		top:90%;
@@ -105,8 +112,6 @@
 		var address = $('#address').val()
 		var city = $('#city').val()
 		var state = $('#state').val()
-		$('#formfields').modal('hide')
-		
 		
 		
 				$.ajax({
@@ -127,9 +132,11 @@
 		var e = $('#Password1').val();
 		if (p != e){ 
 		$('#loginform').modal('hide')
+		$('#login').hide()
+		$('#register').hide()
 		$('#tabSUM').show()
 		//Form Show
-		$('#formfields').modal('show')
+		$('#formfields').show()
 
 		
 		
@@ -146,7 +153,7 @@
 <ul class="nav nav-tabs" role="tabs" id="tabSUM">
   <li role="presentation" class="active"><a href="#map">Map - Space Dimension</a></li>
   <li role="presentation"><a href="#">Map - Time Dimension</a></li>
-  <li role="presentation"><a href="#">1.21 Jiggawatts</a></li>
+  <li role="presentation"><a href="#">PWR/FUEL: <font color="green">NOMINAL 1.21 Jiggawatts</font></a></li>
 </ul>
  </div>
   
@@ -184,24 +191,28 @@
 <div class="container">
 <!-- Small modal -->
 
-<div class="modal fade" id="formfields" tabindex="0" role="input">
+<p class=text-center>
+<div id="formfields" tabindex="0" role="input">
 
 <div class="input-group">
+      <span class="input-group-addon">
   <input type="text" class="form-control" id="address" placeholder="Address" aria-describedby="basic-addon2" value="999 3rd Ave">
 </div>
-	  <div class="input-group">
+  </span>
+	  <span class="input-group-addon">
     <input type="text" class="form-control" id="date" placeholder="YYYY/MM/DD" value="1984/2/22">
-  </div>
+  </span>
 
-  	  <div class="input-group">
+  	  <span class="input-group-addon">
     <input type="text" class="form-control" id="city" placeholder="City" value="Seattle">
   
-  </div>	  <div class="input-group">
+  </span>	  <span class="input-group-addon">
     <input type="text" class="form-control" id="state" placeholder="State" value="WA">
-  </div>
-
+  </span>
+	<span class="input-group-addon"
     <button onclick="server_send()" class="btn btn-default">Submit</button>
-
+	</span>
+	</p>
 </div>
 
 <div class="modal fade bs-example-modal-sm" id="loginform" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
