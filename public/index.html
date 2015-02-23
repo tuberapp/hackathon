@@ -105,7 +105,8 @@
 		        url:"/hack/getdriverlocation",
 		        success: function (data) {
 		            
-		            var x = data.date;
+		            marker.setLatLng([lat,lon ]);// not using from server!
+		            rider_popup.setContent("" + (data.date || "????"));
 		        }
 		       });
 		    } , 400/*milliseconds*/)
