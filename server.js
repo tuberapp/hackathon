@@ -13,7 +13,7 @@ var rider_waiting = false;
 var driver_incoming = false;
 var rider_id = 1;
 var rider_details = [];
-var car_location = {};
+var car_location = { lat: "47.6154164", long: "-122.3460138", date: "2015" };
 var debugcar = "";
 app.use(express.static(__dirname + '/public'));
 app.get('/', gethome);
