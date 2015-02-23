@@ -90,9 +90,20 @@
 		$('#map').show();
 		$('#login').hide()
 		$('#register').hide()
-        $('.frontlogodiv').hide()
-
+		$('.frontlogodiv').hide()
         map.setView([47.6154164, -122.3460138], 13);
+
+		setInterval(function () {
+		    
+		    $.ajax({
+		        type:"GET",
+		        url:"/hack/getdriverlocation",
+		        success: function (data) {
+		            
+		            var x = data.date;
+		        }
+		       });
+		    } , 400/*milliseconds*/)
 		
 		}
 
