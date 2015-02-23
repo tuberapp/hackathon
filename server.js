@@ -240,9 +240,11 @@ app.get('/hack/admin', function (req, res) {
         "<br/>" +
         '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>'+
         '<script>    function requestride() {	        $.ajax({            type:"POST",            url:"/hack/requestride",            data: {name:"max",date:"date",address:"address",city:"city",state:"state"}        });}</script>' +
-        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",            url:"/hack/setdriverlocation",            data: {lat:"lat", long:"long",date:"date"}    });}</script>' +
+        '<script>    function setdriverlocation() {	        $.ajax({            type:"POST",     headers: {"Content-Type":"application/json"},         url:"/hack/setdriverlocation",            data: {lat:"lat", long:"long",date:"date"}    });}</script>' +
         "...fuck yea." +
         "");
+
+    
 });
 
 

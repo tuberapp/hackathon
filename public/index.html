@@ -7,6 +7,11 @@
   
 	
 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" i></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
    <style>
    
    body {
@@ -29,12 +34,12 @@
 	#login {
 		position: absolute;
 		top:90%;
-		right:35%;
+		right:calc(35% - 35px);
 		}
 	#register {
 		position: absolute;
 		top:90%;
-		left:35%;
+		left:calc(35% - 52px);
 		}
       #map {
 		height: 0px;
@@ -45,11 +50,6 @@
 		
 		}
     </style>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"i></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   
  
 <script>
@@ -151,8 +151,8 @@
 	<div class="frontlogodiv">
 	<img src="/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
 	</div>
-  <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
-  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
+    <button type="button" id="login" class="btn" data-toggle="modal" data-target="#loginform">Login</button>
+    <button type="button" id="register" class="btn" data-toggle="modal" data-target="#registerform">Register</button>
 </div>
   
   
