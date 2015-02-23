@@ -37,8 +37,7 @@
 		left:35%;
 		}
       #map {
-		height: 100%;
-        max-width: 100%; 
+		height: 0px;
 		}
 	#tabSUM
 		{
@@ -54,18 +53,27 @@
   
  
 <script>
+		$('#map').hide();
 
-var p;
+        var p;
 		function standby(){
 		
-		
-		$('#map').show();
+		$('#map').height('500px');
 		var map = L.map('map').setView([51.505, -0.09], 13);
-		$('toggle').hide()
+        L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'examples.map-i875mjb7'
+        }).addTo(map);
+		$('#map').show();
 		$('#login').hide()
 		$('#register').hide()
+        $('.frontlogodiv').hide()
 		
 		}
+
 
 		
 		function server_send(){
@@ -126,7 +134,7 @@ var p;
   <!-- Tab panes -->
   
   <div class="tab-content">
-      <div  role="tabpanel" id="map" class="map">
+      <div  role="tabpanel" class="tab-pane">
   </div>
     <div role="tabpanel" class="tab-pane" id="profile">...</div>
     <div role="tabpanel" class="tab-pane" id="messages">...</div>
@@ -137,6 +145,9 @@ var p;
 <body>
 
 <div class="toggle">
+<div>
+ <div id="map"></div>
+</div>
 	<div class="frontlogodiv">
 	<img src="/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
 	</div>
