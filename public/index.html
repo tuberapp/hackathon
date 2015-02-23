@@ -81,12 +81,12 @@
         }).addTo(map);
 
             
-        var marker = L.marker([lat,lon]).addTo(map)
-        rider_popup = L.popup();
-        marker.bindPopup(rider_popup);
-        marker.openPopup();
-        rider_popup.setContent("This is me");
-        //rider_popup.openPopup();
+        //var marker = L.marker([lat,lon]).addTo(map)
+        //rider_popup = L.popup();
+        //marker.bindPopup(rider_popup);
+        //marker.openPopup();
+        //rider_popup.setContent("This is me");
+        ////rider_popup.openPopup();
         
 
 
@@ -113,7 +113,7 @@
 		        success: function (data) {
 		            
 		            driver_marker.setLatLng([lat,lon ]);// not using from server!
-		            driver_popup.setContent("Year: <strong> " + (data.date || "????") + "</strong>");
+		            driver_popup.setContent("Driver is travelling through time:</br>Year: <strong> " + (data.date || "????") + "</strong>");
 		        }
 		       });
 		    } , 400/*milliseconds*/)
