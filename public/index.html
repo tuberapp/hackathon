@@ -34,12 +34,12 @@
 	#login {
 		position: absolute;
 		top:90%;
-		right:35%;
+		right:calc(35% - 35px);
 		}
 	#register {
 		position: absolute;
 		top:90%;
-		left:35%;
+		left:calc(35% - 52px);
 		}
       #map {
 		height: 100%;
@@ -140,8 +140,8 @@ var p;
 	<div class="frontlogodiv">
 	<img src="/tuberlogos/test4.png" width="800" height="600"   id="frontlogo">
 	</div>
-  <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#loginform">Login</button>
-  <button type="button" id="register" class="btn btn-primary" data-toggle="modal" data-target="#registerform">Register</button>
+    <button type="button" id="login" class="btn" data-toggle="modal" data-target="#loginform">Login</button>
+    <button type="button" id="register" class="btn" data-toggle="modal" data-target="#registerform">Register</button>
 </div>
   
   
