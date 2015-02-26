@@ -96,7 +96,10 @@
         driver_marker.bindPopup(driver_popup);
         driver_popup.setContent("Year: <strong> " + "2015" + "</strong>" );
         driver_marker.openPopup();
-        //driver_popup.openPopup();
+        setTimeout(function(){
+            // call it again
+            driver_marker.openPopup();
+        }, 1000);
         
 
 		$('#map').show();
