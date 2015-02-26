@@ -32,13 +32,6 @@
 	padding-bottom;"75%"
 	}
 	
-	#formfields {
-	
-	display:none;
-	
-	
-	}
-	
 	#login {
 		position: absolute;
 		top:90%;
@@ -80,43 +73,30 @@
             id: 'examples.map-i875mjb7'
         }).addTo(map);
 
-            
-        //var marker = L.marker([lat,lon]).addTo(map)
-        //rider_popup = L.popup();
-        //marker.bindPopup(rider_popup);
-        //marker.openPopup();
-        //rider_popup.setContent("This is me");
-        ////rider_popup.openPopup();
-        
+        var marker = L.marker([lat,lon ]).addTo(map);
+        rider_popup = L.popup();
+        marker.bindPopup(rider_popup);
+        rider_popup.setContent("This is me");
+        marker.openPopup();
+        setTimeout(function(){
+            // call it again
+            marker.openPopup();
+        }, 1000);
 
-
-        
-        var driver_marker = L.marker([lat,lon ]).addTo(map);
+        /*
+        var driver_marker = L.driver_marker([lat,lon ]).addTo(map);
         driver_popup = L.popup();
         driver_marker.bindPopup(driver_popup);
-        driver_popup.setContent("Year: <strong> " + "2015" + "</strong>" );
         driver_marker.openPopup();
-        //driver_popup.openPopup();
-        
+        driver_popup.setContent("Year: <strong> " + year + "</strong>" );
+        */
 
 		$('#map').show();
 		$('#login').hide()
 		$('#register').hide()
-		$('.frontlogodiv').hide()
-        map.setView([47.6154164, -122.3460138], 13);
+        $('.frontlogodiv').hide()
 
-		setInterval(function () {
-		    
-		    $.ajax({
-		        type:"GET",
-		        url:"/hack/getdriverlocation",
-		        success: function (data) {
-		            
-		            driver_marker.setLatLng([lat,lon ]);// not using from server!
-		            driver_popup.setContent("Driver is travelling through time:</br><h1>Year: <strong> " + (data.date || "????") + "</strong></h1>");
-		        }
-		       });
-		    } , 400/*milliseconds*/)
+        map.setView([47.6154164, -122.3460138], 13);
 		
 		}
 
@@ -128,6 +108,8 @@
 		var address = $('#address').val()
 		var city = $('#city').val()
 		var state = $('#state').val()
+		$('#formfields').modal('hide')
+		
 		
 		
 				$.ajax({
@@ -148,11 +130,9 @@
 		var e = $('#Password1').val();
 		if (p != e){ 
 		$('#loginform').modal('hide')
-		$('#login').hide()
-		$('#register').hide()
 		$('#tabSUM').show()
 		//Form Show
-		$('#formfields').show()
+		$('#formfields').modal('show')
 
 		
 		
@@ -169,7 +149,7 @@
 <ul class="nav nav-tabs" role="tabs" id="tabSUM">
   <li role="presentation" class="active"><a href="#map">Map - Space Dimension</a></li>
   <li role="presentation"><a href="#">Map - Time Dimension</a></li>
-  <li role="presentation"><a href="#">PWR/FUEL: <font color="green">NOMINAL 1.21 Jiggawatts</font></a></li>
+  <li role="presentation"><a href="#">1.21 Jiggawatts</a></li>
 </ul>
  </div>
   
@@ -207,28 +187,24 @@
 <div class="container">
 <!-- Small modal -->
 
-<p class=text-center>
-<div id="formfields" tabindex="0" role="input">
+<div class="modal fade" id="formfields" tabindex="0" role="input">
 
 <div class="input-group">
-      <span class="input-group-addon">
   <input type="text" class="form-control" id="address" placeholder="Address" aria-describedby="basic-addon2" value="999 3rd Ave">
 </div>
-  </span>
-	  <span class="input-group-addon">
+	  <div class="input-group">
     <input type="text" class="form-control" id="date" placeholder="YYYY/MM/DD" value="1984/2/22">
-  </span>
+  </div>
 
-  	  <span class="input-group-addon">
+  	  <div class="input-group">
     <input type="text" class="form-control" id="city" placeholder="City" value="Seattle">
   
-  </span>	  <span class="input-group-addon">
+  </div>	  <div class="input-group">
     <input type="text" class="form-control" id="state" placeholder="State" value="WA">
-  </span>
-	<span class="input-group-addon"
+  </div>
+
     <button onclick="server_send()" class="btn btn-default">Submit</button>
-	</span>
-	</p>
+
 </div>
 
 <div class="modal fade bs-example-modal-sm" id="loginform" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
